@@ -1,29 +1,44 @@
 import React, { Component } from "react";
 import BookListItem from "../book-list-item";
+import Spinner from "../spinner"
+import ErrorIndicator from "../error-indicator"
 import { connect } from "react-redux";
 import { withBookstoreService } from "../hoc"
-import { booksLoaded } from "../../actions";
+import { booksLoaded, booksRequested, booksError } from "../../actions";
 import { compose } from "../../utils";
 import "./book-list.css"
 
 class BookList extends Component {
 
   componentDidMount() {
-    const { bookstoreService } = this.props;
-    console.log(this.props);
-    const data = bookstoreService.getBooks();
-    console.log(data);
+    this.props.fetchBooks();
+    // const { bookstoreService, booksLoaded, booksRequested, booksError } = this.props;
+    // console.log(this.props);
+    // booksRequested();
+    // bookstoreService.getBooks()
+    // .then((data) => booksLoaded(data))
+    // .catch((error) => booksError(error));
+    // console.log(data);
 
-    this.props.booksLoaded(data);
+    // this.props.booksLoaded(data);
   };
 
   
 
   render() {
-    console.log(this.props);
-    const { books } = this.props;
+    // console.log(this.props);
+    const { books, loading, error } = this.props;
+
+    if (loading) {
+      return <Spinner/>
+    };
+
+    if (error) {
+      return <ErrorIndicator />
+    };
+
     return (
-      <ul>
+      <ul className="book-list">
         {
           books.map((book) => {
             return (
@@ -38,13 +53,30 @@ class BookList extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    books: state.books
+    books: state.books,
+    loading: state.loading,
+    error: state.error
   };
 };
 
-const mapDispatchToProps = { 
-  booksLoaded
+const mapDispatchToProps = (dispatch, ownProps) => {
+  // console.log(args);
+  // const {dispatch, ownProps} = args
+  const { bookstoreService } = ownProps
+  return {
+    fetchBooks: () => {
+      dispatch(booksRequested());
+      bookstoreService.getBooks()
+      .then((data) => dispatch(booksLoaded(data)))
+      .catch((error) => dispatch(booksError(error)));
+    }
+  }; 
+  // booksLoaded,
+  // booksRequested,
+  // booksError
 };
+
+// console.log(mapDispatchToProps);
 
 export default compose(
   withBookstoreService(),
