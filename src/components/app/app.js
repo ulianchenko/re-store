@@ -83,6 +83,62 @@ const App = () => {
   // // twoSum(bigArr, total);
   // console.log(twoSum(bigArr, total));
 
+  // const capitalize = (string) => {
+  //   return string[0].toUpperCase() + string.slice(1);
+  //   // let arrFromStr = string.split('');
+  //   // console.log(arrFromStr);
+  //   // arrFromStr [0] = arrFromStr[0].toUpperCase();
+  //   // console.log(arrFromStr);
+  //   // return arrFromStr.join('');
+  // }
+
+  // console.log(capitalize('hello'));
+
+  // const marks = [50, 20, 70, 60, 45, 30];
+  // const findMin = (arr) => {
+  //   return arr.sort((prev, el) => prev-el)[0]
+  // }
+
+  // const findMax = (arr) => {
+  //   return Math.max(...arr)
+  // }
+
+  // const findMaxArr = (arr) => {
+  //   let max = 0;
+  //   for (let i = 0; i < arr.length; i++) {
+  //     if (arr[i] > max) {
+  //       max = arr[i]
+  //     }
+  //   }
+  //   return max;
+  // }
+
+  // const sortedMaxArr = (arr) => {
+  //   for (let i = 0; i < arr.length; i++) {
+  //     if (arr[i+1] < arr[i]) {
+  //       arr[i] = arr[i+1]
+  //     }
+  //   }
+  //   return arr[arr.length-1];
+  // }
+
+  // const arrayOfInt = [50, 20, 70, 70, 60, 45, 45, 30];
+
+  // const uniqueArr = (arr) => {
+  //   return arr.filter((el, idx) => el !== arr[idx-1])
+  // }
+  // console.log(uniqueArr(arrayOfInt))
+
+  
+  // console.log(findMin(marks))
+  // console.log(findMax(marks))
+  // console.log(findMaxArr(marks))
+  // console.log(sortedMaxArr(marks))
+  // console.log([..."John Resing"]); // ["J", "o", "h", ...]
+  // console.log(...["John Resing"]); // "John Resing"
+  // console.log(..."John Resing");   // J o h n  
+
+
   return (
     <main role="main" className="container">
       <ShopHeader numItems={5} total={210}/>
