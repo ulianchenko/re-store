@@ -138,6 +138,27 @@ const App = () => {
   // console.log(...["John Resing"]); // "John Resing"
   // console.log(..."John Resing");   // J o h n  
 
+  // const obj = {
+  //   name: "Sergey",
+  //   age: 23,
+  //   profession: {
+  //     position: "developer",
+  //     yearsOfWork: 5
+  //   }
+  // };
+  // const user = {...obj};
+  // const admin = Object.assign({}, obj);
+
+  // obj.profession.yearsOfWork = 29
+
+  // console.log(user.profession === obj.profession)
+  // console.log(admin === obj)
+
+
+  // console.log(obj);
+  // console.log(user)
+  // console.log(admin);
+
 
   return (
     <main role="main" className="container">

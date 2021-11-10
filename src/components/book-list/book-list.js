@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { bindActionCreators } from "redux";
 import BookListItem from "../book-list-item";
 import Spinner from "../spinner"
 import ErrorIndicator from "../error-indicator"
@@ -61,9 +62,9 @@ class BookListContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    books: state.books,
-    loading: state.loading,
-    error: state.error
+    books: state.bookList.books,
+    loading: state.bookList.loading,
+    error: state.bookList.error
   };
 };
 
@@ -71,10 +72,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   // console.log(args);
   // const {dispatch, ownProps} = args
   const { bookstoreService } = ownProps
-  return {
-    fetchBooks: fetchBooks(bookstoreService, dispatch),
-    onAddedToCart: (id) => dispatch(bookAddedToCart(id))
-  }; 
+  return bindActionCreators ({
+    fetchBooks: fetchBooks(bookstoreService),
+    onAddedToCart: bookAddedToCart
+  }, dispatch); 
   // booksLoaded,
   // booksRequested,
   // booksError
